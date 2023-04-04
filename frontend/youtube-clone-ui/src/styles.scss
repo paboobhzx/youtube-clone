@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use "css-fx-layout" as fx;
+
+// If you want to include the responsive API selectors
+$includeResponsiveApi: true;
+
+// If you choose to use CSS class selectors:
+@include fx.class-selectors($includeResponsiveApi);
+@include fx.gap-class-selectors(1, 16, 1, px em, $includeResponsiveApi);
+@include fx.gap-class-selectors-from-list(32 48, px em, $includeResponsiveApi);
+@include fx.flex-size-class-selectors(5, 100, 5, $includeResponsiveApi);
+@include fx.flex-size-class-selectors-from-list(33 66, $includeResponsiveApi);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
