@@ -1,0 +1,64 @@
+<div class="fx-layout-row">
+    <span class="fx-flex--20">Hi</span>
+
+    <span class="fx-flex--30">
+        <div class="mat-title">Add video MetaData</div>
+        <form [formGroup]="saveVideoDetailsForm">
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Title</mat-label>
+                    <input matInput [formControl]="title">
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <input matInput [formControl]="description">
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Video Status</mat-label>
+                    <input matInput [formControl]="videoStatus">
+                    <mat-select [formControl]="videoStatus"> 
+                        <mat-option value="PUBLIC">PUBLIC</mat-option>
+                        <mat-option value="PRIVATE">PRIVATE</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="example-chip-list" appearance="fill">
+                    <mat-label>Tags</mat-label>
+                    <mat-chip-grid #chipGrid aria-label="Enter tags">
+                      <mat-chip-row *ngFor="let tag of tags"
+                                    (removed)="remove(tag)"
+                                    [editable]="true"
+                                    (edited)="edit(tag, $event)"
+                                    [aria-description]="'press enter to edit ' + tag">
+                        {{tag}}
+                        <button matChipRemove [attr.aria-label]="'remove ' + tag">
+                          <mat-icon>cancel</mat-icon>
+                        </button>
+                      </mat-chip-row>
+                      <input placeholder="New Tag..."
+                             [matChipInputFor]="chipGrid"
+                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                             [matChipInputAddOnBlur]="addOnBlur"
+                             (matChipInputTokenEnd)="add($event)"/>
+                    </mat-chip-grid>
+                  </mat-form-field>                
+            </div>
+
+            <div>
+                <button type="submit" mat-raised-button color="primary">Save</button>
+            </div>            
+        </form>
+    </span>
+
+    <span class="fx-flex--30">Video Player</span>
+
+    <span class="fx-flex--20">Hi</span>
+
+
+    
+</div>

@@ -1,5 +1,7 @@
 package com.pablo.portfolio.youtubeclone.controller;
 
+import com.pablo.portfolio.youtubeclone.dto.UploadVideoResponse;
+import com.pablo.portfolio.youtubeclone.dto.VideoDto;
 import com.pablo.portfolio.youtubeclone.service.VideoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,8 +16,20 @@ public class VideoController {
     private final VideoService videoService;
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void uploadVideo(@RequestParam("file")MultipartFile file){
-        videoService.uploadVideo(file);
+    public UploadVideoResponse uploadVideo(@RequestParam("file")MultipartFile file){
+        return videoService.uploadVideo(file);
 
+    }
+    @PostMapping("/thumbnail")
+    @ResponseStatus(HttpStatus.CREATED)
+    public String uploadThumbnail
+            (@RequestParam("file")MultipartFile file, @RequestParam("videoId") String videoId){
+        return videoService.uploadThumbnail(file, videoId);
+    }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public VideoDto editVideoMetaData(@RequestBody VideoDto videoDto){
+        return videoService.editVideo(videoDto);
     }
 }

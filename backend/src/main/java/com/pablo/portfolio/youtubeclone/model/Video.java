@@ -15,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class Video {
     @Id
-    private String Id;
+    private String id;
     private String title;
     private String description;
     private String userId;
