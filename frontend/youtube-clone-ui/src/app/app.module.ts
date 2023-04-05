@@ -10,20 +10,26 @@ import { RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
 import { UploadVideoComponent } from './upload-video/upload-video.component';
 import { NgxFileDropModule } from 'ngx-file-drop';
-import { HeaderComponent } from './header/header.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
-//Angular Material imports
 import { SaveVideoDetailsComponent } from './save-video-details/save-video-details.component';
+import { HeaderComponent } from './header/header.component';
+
+//Angular Material imports
+import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select'
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatChipsModule} from '@angular/material/chips';
 import {MatButtonModule} from '@angular/material/button'
 import {MatIcon, MatIconModule} from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input';
+//End Material Imports
 import {VgCoreModule} from '@videogular/ngx-videogular/core';
 import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { VideoPlayerComponent } from './video-player/video-player.component';
+
 
 
 
@@ -33,7 +39,8 @@ import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
     AppComponent,
     UploadVideoComponent,
     HeaderComponent,
-    SaveVideoDetailsComponent,            
+    SaveVideoDetailsComponent,
+    VideoPlayerComponent,            
   ],
   imports: [
     BrowserModule,
@@ -55,8 +62,9 @@ import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule
-      ],
+    VgBufferingModule,
+    MatSnackBarModule    
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
