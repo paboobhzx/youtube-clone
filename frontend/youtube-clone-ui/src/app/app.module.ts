@@ -3,7 +3,7 @@ import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { RouterModule } from '@angular/router';
@@ -29,6 +29,10 @@ import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { VideoPlayerComponent } from './video-player/video-player.component';
+import { TokenInterceptor } from './tokeninterceptort.service';
+import { CallbackComponent } from './callback/callback.component';
+import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import { UserProfileComponent } from './userprofile/userprofile.component';
 
 
 
@@ -40,7 +44,9 @@ import { VideoPlayerComponent } from './video-player/video-player.component';
     UploadVideoComponent,
     HeaderComponent,
     SaveVideoDetailsComponent,
-    VideoPlayerComponent,            
+    VideoPlayerComponent,
+    CallbackComponent,      
+    UserProfileComponent      
   ],
   imports: [
     BrowserModule,
@@ -63,9 +69,21 @@ import { VideoPlayerComponent } from './video-player/video-player.component';
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-    MatSnackBarModule    
+    MatSnackBarModule,   
+    AuthModule.forRoot({
+      domain: 'dev-i63rcznjs255jxgf.us.auth0.com',
+      clientId: 'NJbox1ptzDdadd1Zo9mlBvtkElgge59v',
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      }
+    }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true,
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

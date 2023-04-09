@@ -39,11 +39,14 @@ public class VideoService {
 
     public VideoDto editVideo(VideoDto videoDto) {
         Video savedVideo = getVideoById(videoDto.getId());
+
         savedVideo.setTitle(videoDto.getTitle());
         savedVideo.setDescription(videoDto.getDescription());
         savedVideo.setTags(videoDto.getTags());
         savedVideo.setThumbnailUrl(videoDto.getThumbnailUrl());
         savedVideo.setVideoStatus(videoDto.getVideoStatus());
+
+        videoRepository.save(savedVideo);
         return videoDto;
     }
 

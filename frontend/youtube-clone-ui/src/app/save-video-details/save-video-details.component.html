@@ -27,26 +27,29 @@
                         <mat-option value="PRIVATE">PRIVATE</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field class="example-chip-list" appearance="fill">
-                    <mat-label>Tags</mat-label>
-                    <mat-chip-grid #chipGrid aria-label="Enter tags">
-                      <mat-chip-row *ngFor="let tag of tags"
-                                    (removed)="remove(tag)"
-                                    [editable]="true"
-                                    (edited)="edit(tag, $event)"
-                                    [aria-description]="'press enter to edit ' + tag">
-                        {{tag}}
-                        <button matChipRemove [attr.aria-label]="'remove ' + tag">
-                          <mat-icon>cancel</mat-icon>
-                        </button>
-                      </mat-chip-row>
-                      <input placeholder="New Tag..."
-                             [matChipInputFor]="chipGrid"
-                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                             [matChipInputAddOnBlur]="addOnBlur"
-                             (matChipInputTokenEnd)="add($event)"/>
-                    </mat-chip-grid>
-                  </mat-form-field>                
+                <div>
+                    <mat-form-field class="example-chip-list" appearance="fill">
+                        <mat-label>Tags</mat-label>
+                        <mat-chip-grid #chipGrid aria-label="Enter tags">
+                          <mat-chip-row *ngFor="let tag of tags"
+                                        (removed)="remove(tag)"
+                                        [editable]="true"
+                                        (edited)="edit(tag, $event)"
+                                        [aria-description]="'press enter to edit ' + tag">
+                            {{tag}}
+                            <button matChipRemove [attr.aria-label]="'remove ' + tag">
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip-row>
+                          <input placeholder="New Tag..."
+                                 [matChipInputFor]="chipGrid"
+                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                 [matChipInputAddOnBlur]="addOnBlur"
+                                 (matChipInputTokenEnd)="add($event)"/>
+                        </mat-chip-grid>
+                      </mat-form-field>                
+                </div>
+                
             </div>
             <div>
                 <label for="inputGroupFile01">Upload Thumbnail:
@@ -57,12 +60,12 @@
                     <br />
                     <div *ngIf="fileSelected"> 
                         <div>
-                            <p>Selected file: {{selectedFileName}}</p>
-                        </div>
-                        <hr>
-                        <div *ngIf="fileSelected">
-                            <button mat-raised-button color="primary" type="submit" (click)="onUpload()">Upload</button>
-                        </div>
+                        <p>Selected file: {{selectedFileName}}</p>
+                    </div>
+                    <hr>
+                    <div *ngIf="fileSelected">
+                        <button mat-raised-button color="primary" type="submit" (click)="onUpload()">Upload</button>
+                    </div>
 
                     </div>
                     
@@ -71,7 +74,7 @@
             <br />
 
             <div>
-                <button type="submit" mat-raised-button color="primary">Save</button>
+                <button type="submit" mat-raised-button color="primary" (click)="saveVideo()">Save</button>
             </div> 
            
             
@@ -79,7 +82,7 @@
     </span>
 
     <span class="fx-flex--30">
-        <app-video-player></app-video-player>
+        <app-video-player [videoUrl]="videoUrl"></app-video-player>
     </span>
 
     <span class="fx-flex--20">Hi</span>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {VgApiService} from '@videogular/ngx-videogular/core';
 
 @Component({
@@ -7,6 +7,9 @@ import {VgApiService} from '@videogular/ngx-videogular/core';
   styleUrls: ['./video-player.component.scss']
 })
 export class VideoPlayerComponent {
+
+  @Input()
+  videoUrl!: string
   
 
   constructor() {}

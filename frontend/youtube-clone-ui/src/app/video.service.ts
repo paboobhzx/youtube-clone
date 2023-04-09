@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { FileSystemFileEntry } from 'ngx-file-drop';
 import { Observable } from 'rxjs';
 import { Globalcomponent } from '../global/global-component'
+import { IVideoDto } from './IVideoDto';
 import { IUploadVideoResponse } from './upload-video/IUploadVideoResponse';
 
 @Injectable({
@@ -32,6 +33,15 @@ export class VideoService {
       responseType: 'text'
     });
         
+  }
 
+  getVideo(videoId: string): Observable<IVideoDto> {
+
+    return this.httpClient.get<IVideoDto>(Globalcomponent.apiUrl + "/api/videos/" + videoId);
+  }
+
+  saveVideo(videoMetaData: IVideoDto) : Observable<IVideoDto>{
+    console.log(videoMetaData.videoStatus)
+    return this.httpClient.put<IVideoDto>(Globalcomponent.apiUrl + "/api/videos",videoMetaData);
   }
 }
