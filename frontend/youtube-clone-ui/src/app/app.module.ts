@@ -33,6 +33,7 @@ import { TokenInterceptor } from './tokeninterceptort.service';
 import { CallbackComponent } from './callback/callback.component';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { UserProfileComponent } from './userprofile/userprofile.component';
+import { VideoDetailComponent } from './video-detail/video-detail.component';
 
 
 
@@ -46,7 +47,7 @@ import { UserProfileComponent } from './userprofile/userprofile.component';
     SaveVideoDetailsComponent,
     VideoPlayerComponent,
     CallbackComponent,      
-    UserProfileComponent      
+    UserProfileComponent, VideoDetailComponent      
   ],
   imports: [
     BrowserModule,
