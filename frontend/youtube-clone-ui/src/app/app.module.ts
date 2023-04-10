@@ -72,17 +72,22 @@ import { UserProfileComponent } from './userprofile/userprofile.component';
     MatSnackBarModule,   
     AuthModule.forRoot({
       domain: 'dev-i63rcznjs255jxgf.us.auth0.com',
-      clientId: 'NJbox1ptzDdadd1Zo9mlBvtkElgge59v',
+      clientId: 'NJbox1ptzDdadd1Zo9mlBvtkElgge59v',  
+      useRefreshTokens: true,
+      
+          
       authorizationParams: {
-        redirect_uri: window.location.origin
-      }
+        redirect_uri: window.location.origin,                
+      },
+      
     }),
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthHttpInterceptor,
+      useClass: TokenInterceptor,
       multi: true,
+      
     }],
   bootstrap: [AppComponent]
 })
