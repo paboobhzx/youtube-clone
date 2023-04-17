@@ -31,9 +31,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { TokenInterceptor } from './tokeninterceptort.service';
 import { CallbackComponent } from './callback/callback.component';
-import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
-import { UserProfileComponent } from './userprofile/userprofile.component';
+import { AuthConfigModule } from './auth/auth-config.module';
+import { AuthInterceptor } from 'angular-auth-oidc-client';
 import { VideoDetailComponent } from './video-detail/video-detail.component';
+
 
 
 
@@ -46,8 +47,8 @@ import { VideoDetailComponent } from './video-detail/video-detail.component';
     HeaderComponent,
     SaveVideoDetailsComponent,
     VideoPlayerComponent,
-    CallbackComponent,      
-    UserProfileComponent, VideoDetailComponent      
+    CallbackComponent,
+    VideoDetailComponent,          
   ],
   imports: [
     BrowserModule,
@@ -70,26 +71,13 @@ import { VideoDetailComponent } from './video-detail/video-detail.component';
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-    MatSnackBarModule,   
-    AuthModule.forRoot({
-      domain: 'dev-i63rcznjs255jxgf.us.auth0.com',
-      clientId: 'NJbox1ptzDdadd1Zo9mlBvtkElgge59v',  
-      useRefreshTokens: true,
-      
-          
-      authorizationParams: {
-        redirect_uri: window.location.origin,                
-      },
-      
-    }),
+    MatSnackBarModule,
+    AuthConfigModule,   
   ],
-  providers: [
+  providers: [  
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true,
-      
-    }],
+      provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

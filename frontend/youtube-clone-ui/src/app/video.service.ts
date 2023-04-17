@@ -40,6 +40,8 @@ export class VideoService {
 
   getVideo(videoId: string): Observable<IVideoDto> {
 
+
+    
     return this.httpClient.get<IVideoDto>(Globalcomponent.apiUrl + "/api/videos/" + videoId);
   }
 
